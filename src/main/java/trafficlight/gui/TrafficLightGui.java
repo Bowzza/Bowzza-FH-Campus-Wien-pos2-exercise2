@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
 public class TrafficLightGui extends JFrame implements ActionListener {
 
     public static final String ACTION_COMMAND_STOP = "stop";
@@ -32,7 +33,15 @@ public class TrafficLightGui extends JFrame implements ActionListener {
     private void initLights(TrafficLightCtrl ctrl) {
         //TODO implement a part of the pattern here
         //create the TrafficLight
+        trafficLightCtrl = ctrl;
+        red = new TrafficLight(new Color(255, 0, 0));
+        yellow = new TrafficLight(new Color(255, 255, 0));
+        green = new TrafficLight(new Color(0, 255, 0));
         //connect subject and observer
+        ctrl.getRedState().addObserver(red);
+        ctrl.getYellowState().addObserver(yellow);
+        ctrl.getGreenState().addObserver(green);
+
     }
 
     private void init() {
